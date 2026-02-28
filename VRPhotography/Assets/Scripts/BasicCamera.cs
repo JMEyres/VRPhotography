@@ -8,7 +8,7 @@ public class BasicCamera : MonoBehaviour
 
     public int resW = 1920;
     public int resH = 1080;
-    
+
     public void TakePicture()
     {
         // temporary rendertexture
