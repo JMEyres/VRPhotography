@@ -8,18 +8,19 @@ public class PhotoAssessor : MonoBehaviour
     public RawImage photoDisplay;
     private string[] photos;
     private int currentPhotoIndex = 0;
+    private string folderPath;
+     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         LoadPhotos();
     }
-
+    [ContextMenu("Test Load Photos")]
     public void LoadPhotos()
     {
         // match path from camera
-        string folderPath = Application.persistentDataPath + "/Photos";
+        folderPath = Application.persistentDataPath + "/Photos";
         Directory.CreateDirectory(folderPath);
-
 
         // get files from folder
         photos = Directory.GetFiles(folderPath, "*.png");
@@ -49,18 +50,29 @@ public class PhotoAssessor : MonoBehaviour
 
         photoDisplay.texture = texture;
     }
-
+    
+    [ContextMenu("Test Next Photo")]
     public void NextPhoto()
     {
         currentPhotoIndex++;
         if (currentPhotoIndex >= photos.Length) currentPhotoIndex = 0;
         DisplayPhoto(currentPhotoIndex);
     }
-
+   
+    [ContextMenu("Test Previous Photo")]
     public void PreviousPhoto()
     {
         currentPhotoIndex--;
         if (currentPhotoIndex < 0) currentPhotoIndex = photos.Length - 1;
         DisplayPhoto(currentPhotoIndex);
+    }
+
+    [ContextMenu("DeleteAllPhotos")]
+    private void ClearAllPhotos()
+    {
+        foreach (string photoPath in photos)
+        {
+            File.Delete(photoPath);
+        }
     }
 }
