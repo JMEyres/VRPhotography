@@ -5,15 +5,16 @@ using UnityEngine.Networking;
 
 public class ImageUploaderForm : MonoBehaviour
 {
+    string serverUrl = "http://127.0.0.1:5000/assess";
+
     void Start()
     {
         string myImagePath = @"C:\Users\joshu\Pictures\Castle.png"; 
-        string serverUrl = "http://127.0.0.1:5000/assess";
         
-        StartCoroutine(SendImageAsForm(myImagePath, serverUrl));
+        //StartCoroutine(SendImageAsForm(myImagePath));
     }
 
-    IEnumerator SendImageAsForm(string imagePath, string url)
+    public IEnumerator SendImageAsForm(string imagePath)
     {
         if (!File.Exists(imagePath))
         {
@@ -32,7 +33,7 @@ public class ImageUploaderForm : MonoBehaviour
         form.AddBinaryData("image_file", imageBytes, "upload.png", "image/png");
 
         // 4. Send the POST request
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        using (UnityWebRequest www = UnityWebRequest.Post(serverUrl, form))
         {
             Debug.Log("Uploading image...");
             yield return www.SendWebRequest();
