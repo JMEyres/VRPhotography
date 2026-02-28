@@ -34,7 +34,7 @@ public class BasicCamera : MonoBehaviour
         byte[] bytes = photo.EncodeToPNG();
         
         // This saves the image in the project's Assets folder
-        string filename = Application.dataPath + "/Photos/CameraOutput_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+        string filename = Application.persistentDataPath + "/Photos/CameraOutput_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
         File.WriteAllBytes(filename, bytes);
         
         Destroy(photo);
