@@ -1,3 +1,7 @@
+import os  
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' 
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
 from flask import Flask, request, jsonify
 import base64
 import numpy as np
@@ -147,4 +151,4 @@ Write a concise, 2-sentence encouraging critique. Do NOT mention real-world came
 if __name__ == '__main__':
     # Run the server on port 5000
     print("Starting Virtual Photography Server...")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
