@@ -11,7 +11,7 @@ public class ImageUploaderForm : MonoBehaviour
     {
         string myImagePath = @"C:\Users\joshu\Pictures\Castle.png"; 
         
-        //StartCoroutine(SendImageAsForm(myImagePath));
+        StartCoroutine(SendImageAsForm(myImagePath));
     }
 
     public IEnumerator SendImageAsForm(string imagePath)

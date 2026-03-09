@@ -1,25 +1,24 @@
 import requests
 import base64
 
-# The URL of your local Flask server
+# The URL of local Flask server
 url = "http://127.0.0.1:5000/assess"
 
-# The path to your test image
+# path to test image
 image_path = r"C:\Users\joshu\Pictures\Castle.png"
 
 try:
     print(f"Sending {image_path} to the AI...")
 
-    # 2. Package it into a dictionary
+    # Package into a dictionary
     payload = {
         "image_file": open(image_path, 'rb')
     }
 
-    # 3. Send the POST request
-    # THE CRITICAL FIX: Using 'json=payload' automatically sets the Content-Type to 'application/json'
+    # Mimics unity output
     response = requests.post(url, files=payload)
 
-    # 4. Print the server's response
+    # Print the server response
     print("\n--- Server Response ---")
     
     # Try to print it as a nicely formatted dictionary, otherwise print raw text

@@ -7,7 +7,6 @@ public class PhotoAssessor : MonoBehaviour
 {
     public RawImage photoDisplay;
     public ImageUploaderForm imageUploaderForm;
-    public int indexToSend = 0;
     private string[] photos;
     private int currentPhotoIndex = 0;
     private string folderPath;
@@ -81,6 +80,6 @@ public class PhotoAssessor : MonoBehaviour
     [ContextMenu("Assess Photo")]
     private void AssessPhoto()
     {
-        StartCoroutine(imageUploaderForm.SendImageAsForm(photos[indexToSend]));
+        StartCoroutine(imageUploaderForm.SendImageAsForm(photos[currentPhotoIndex]));
     }
 }

@@ -17,8 +17,6 @@ public class DayNightCycle : MonoBehaviour
     private float timeScale;
     
     [SerializeField, Header("Day variables")]
-    private float sunSizeDay = 1;
-    [SerializeField]
     private float sunSizeConvergenceDay = 3.48f;
     [SerializeField]
     private float atmosphereThicknessDay = 2.06f;
@@ -26,8 +24,7 @@ public class DayNightCycle : MonoBehaviour
     private float exposureDay = 1.0f;
     
     [SerializeField, Header("Night variables")]
-    private float sunSizeNight = 0;
-    [SerializeField]
+
     private float sunSizeConvergenceNight = 3.62f;
     [SerializeField]
     private float atmosphereThicknessNight = 0.34f;
@@ -41,7 +38,6 @@ public class DayNightCycle : MonoBehaviour
     {
         time = 0;
         UnityEngine.RenderSettings.skybox.SetFloat("_SunSize", 0.5f);
-        
     }
 
     // Update is called once per frame

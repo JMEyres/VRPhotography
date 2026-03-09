@@ -1,13 +1,15 @@
 import cv2
 import numpy as np
 
-def analyze_image_metrics():
-    # 1. Load Image
-    img = cv2.imread(r'C:\Users\joshu\Pictures\Castle.png')
-    if img is None:
+
+def analyze_image_metrics(pilImage):
+    # Load Image
+    if pilImage is None:
         return "Error loading image"
     
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    image = np.array(pilImage)[:, :, ::-1].copy()
+
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     height, width = gray.shape
 
     results = {
@@ -19,7 +21,7 @@ def analyze_image_metrics():
         "composition_comment": ""
     }
 
-    # --- METRIC 1: BRIGHTNESS (Exposure) ---
+    # Exposure
     # Calculate average pixel intensity (0-255)
     avg_brightness = np.mean(gray)
     results["brightness_score"] = round(avg_brightness, 2)
@@ -31,7 +33,7 @@ def analyze_image_metrics():
     else:
         results["brightness_comment"] = "Good Exposure"
 
-    # --- METRIC 2: BLUR (Focus) ---
+    # Focus
     # Calculate the variance of the Laplacian (Edge detection)
     # Low variance = little edge detail = Blurry
     laplacian_var = cv2.Laplacian(gray, cv2.CV_64F).var()
@@ -42,7 +44,7 @@ def analyze_image_metrics():
     else:
         results["blur_comment"] = "Sharp Focus"
 
-    # --- METRIC 3: COMPOSITION (Rule of Thirds via 'Center of Mass') ---
+    # Composition
     # Threshold the image to find the "subject" (brightest parts)
     _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
     
