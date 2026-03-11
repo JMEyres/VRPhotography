@@ -11,6 +11,11 @@ public class BasicCamera : MonoBehaviour
 
     public void TakePicture()
     {
+        // Mathf.Log(result,base)
+        // Math for getting iso to global post exposure would be Mathf.Log(ISO/100, 2), basically how many times do we need to double to get to the iso value
+        // Math for getting shutter speed (SS) to global post exposure would be Mathf.Log(SS*100, 2) then just add to iso result
+        // Depth of field is a separate thing
+
         // temporary rendertexture
         RenderTexture rt = new RenderTexture(resW, resH, 24);
         targetCamera.targetTexture = rt;
