@@ -1526,9 +1526,9 @@ Camera:
   m_FOVAxisMode: 0
   m_Iso: 100
   m_ShutterSpeed: 0.01
-  m_Aperture: 16
+  m_Aperture: 5.6
   m_FocusDistance: 10
-  m_FocalLength: 20
+  m_FocalLength: 18
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -1543,7 +1543,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 61.927517
+  field of view: 67.380135
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1551,7 +1551,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 08206cda9a6a0e7438bca36882341fc5, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1

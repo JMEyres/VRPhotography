@@ -65,5 +65,6 @@ public class BasicCamera : MonoBehaviour
         globalVolume.profile.TryGet<DepthOfField>(out var depthOfField);
         depthOfField.focalLength.value = targetCamera.focalLength;
         depthOfField.focusDistance.value = targetCamera.focusDistance;
+        depthOfField.aperture.value = targetCamera.aperture;
     }
 }
