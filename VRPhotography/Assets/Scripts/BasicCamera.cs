@@ -1,13 +1,18 @@
 using UnityEngine;
 using System.IO;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class BasicCamera : MonoBehaviour
 {
+    // Maybe change this to be command pattern
     public Camera targetCamera;
+    public Volume globalVolume;
 
     public int resW = 1920;
     public int resH = 1080;
+    private float ev, iso, ss = 0;
 
     public void TakePicture()
     {
@@ -50,5 +55,15 @@ public class BasicCamera : MonoBehaviour
     void Update()
     {
         if(Keyboard.current.pKey.wasPressedThisFrame) TakePicture();
+        iso = targetCamera.iso;
+        ss = targetCamera.shutterSpeed;
+
+        ev = Mathf.Log(iso/100, 2) + Mathf.Log(ss*100, 2);
+        globalVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments);
+        colorAdjustments.postExposure.value = ev;
+
+        globalVolume.profile.TryGet<DepthOfField>(out var depthOfField);
+        depthOfField.focalLength.value = targetCamera.focalLength;
+        depthOfField.focusDistance.value = targetCamera.focusDistance;
     }
 }
