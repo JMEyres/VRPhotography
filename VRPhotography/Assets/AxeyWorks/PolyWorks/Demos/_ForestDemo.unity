@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 62197785}
   - component: {fileID: 62197784}
   - component: {fileID: 62197787}
+  - component: {fileID: 62197788}
   m_Layer: 0
   m_Name: TEST
   m_TagString: Untagged
@@ -231,6 +232,81 @@ MonoBehaviour:
   sunSizeConvergenceNight: 3.62
   atmosphereThicknessNight: 0.34
   exposureNight: 0.2
+--- !u!114 &62197788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62197783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9139bde9ff8f534e9846f51949c25e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestScript
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
+  button: {fileID: 0}
 --- !u!1 &89619077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,15 +1723,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141928598}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.277, y: 1.425, z: -0.785}
+  m_LocalRotation: {x: -0, y: -0.8756444, z: -0, w: 0.4829565}
+  m_LocalPosition: {x: 0.284, y: 0.975, z: 0.263}
   m_LocalScale: {x: 0.36327, y: 0.36327, z: 0.36327}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 438442559}
   - {fileID: 108257434}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -122.243, z: 0}
 --- !u!114 &2141928606
 MonoBehaviour:
   m_ObjectHideFlags: 0
