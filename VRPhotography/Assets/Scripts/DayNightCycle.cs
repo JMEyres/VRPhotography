@@ -15,6 +15,7 @@ public class DayNightCycle : MonoBehaviour
     private float globalTime;
     [SerializeField]
     private float timeScale;
+    public float dayLength = 15f;
     
     [SerializeField, Header("Day variables")]
     private float sunSizeConvergenceDay = 3.48f;
@@ -46,16 +47,16 @@ public class DayNightCycle : MonoBehaviour
         var _sign = flip ? 1 : -1;
         time += (Time.deltaTime * _sign) * timeScale;
         sunTime += Time.deltaTime * timeScale;
-        var sunRot = RangeMap(sunTime, 0, 15, -20, 200);
+        var sunRot = RangeMap(sunTime, 0, dayLength, -20, 200);
         sun.transform.localEulerAngles = new Vector3 (sunRot,0,0);
-        var _lerpTime = time/15;
+        var _lerpTime = time/dayLength;
         
         sunLight.color = sunColorTimeline.Evaluate(_lerpTime);
         UnityEngine.RenderSettings.skybox.SetFloat("_SunSizeConvergence", Mathf.Lerp(sunSizeConvergenceDay, sunSizeConvergenceNight, _lerpTime));
         UnityEngine.RenderSettings.skybox.SetFloat("_AtmosphereThickness", Mathf.Lerp(atmosphereThicknessDay, atmosphereThicknessNight, _lerpTime));
         UnityEngine.RenderSettings.skybox.SetFloat("_Exposure", Mathf.Lerp(exposureDay, exposureNight, _lerpTime));
 
-        if (time >= 15 || time <= 0 && _sign == -1)
+        if (time >= dayLength || time <= 0 && _sign == -1)
         { 
             flip = !flip;
             sunTime = 0;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 
@@ -14,11 +15,13 @@ public class TestScript : XRBaseInteractable
 
     protected override void OnDisable()
     {
-        button.action.performed += TESTFunc;
+        button.action.performed -= TESTFunc;
     }
     
     void TESTFunc(InputAction.CallbackContext context)
     {
         Debug.Log("BUTTON PRESSED");
     }
+
+    
 }

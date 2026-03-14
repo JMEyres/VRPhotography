@@ -3,9 +3,11 @@ using System.IO;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class BasicCamera : MonoBehaviour
+public class BasicCamera : XRGrabInteractable
 {
+    [Header("Camera variables")]
     // Maybe change this to be command pattern
     public Camera targetCamera;
     public Volume globalVolume;
@@ -13,6 +15,11 @@ public class BasicCamera : MonoBehaviour
     public int resW = 1920;
     public int resH = 1080;
     private float ev, iso, ss = 0;
+   
+    [Header("XR Controller button")]
+    public InputActionReference rightJoystick;
+
+    Vector2 test;
 
     public void TakePicture()
     {
@@ -66,5 +73,31 @@ public class BasicCamera : MonoBehaviour
         depthOfField.focalLength.value = targetCamera.focalLength;
         depthOfField.focusDistance.value = targetCamera.focusDistance;
         depthOfField.aperture.value = targetCamera.aperture;
+
+        //Debug.Log(test);
+        if (targetCamera.focalLength+test.y >= 18) targetCamera.focalLength += test.y;
+        if (targetCamera.focusDistance + test.x *0.01f >= 0) targetCamera.focusDistance += test.x *0.01f;
+    }
+
+    public void TestOnActivated() // Use this with onactivated on the grab interactable to trigger taking a photo
+    {
+        Debug.Log("BUTTON activated");
+    }
+
+    protected override void OnEnable()
+    {
+        rightJoystick.action.performed += SaveFloat;
+        rightJoystick.action.canceled += SaveFloat;
+    }
+
+    protected override void OnDisable()
+    {
+        rightJoystick.action.performed -= SaveFloat;
+        rightJoystick.action.canceled -= SaveFloat;
+    }
+    
+    void SaveFloat(InputAction.CallbackContext context)
+    {
+        test = rightJoystick.action.ReadValue<Vector2>();
     }
 }

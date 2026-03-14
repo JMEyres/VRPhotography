@@ -16,7 +16,7 @@ public class PhotoAssessor : MonoBehaviour
     {
         LoadPhotos();
     }
-    [ContextMenu("Test Load Photos")]
+    [ContextMenu("Load Photos")]
     public void LoadPhotos()
     {
         // match path from camera
@@ -52,7 +52,7 @@ public class PhotoAssessor : MonoBehaviour
         photoDisplay.texture = texture;
     }
     
-    [ContextMenu("Test Next Photo")]
+    [ContextMenu("Next Photo")]
     public void NextPhoto()
     {
         currentPhotoIndex++;
@@ -60,7 +60,7 @@ public class PhotoAssessor : MonoBehaviour
         DisplayPhoto(currentPhotoIndex);
     }
    
-    [ContextMenu("Test Previous Photo")]
+    [ContextMenu("Previous Photo")]
     public void PreviousPhoto()
     {
         currentPhotoIndex--;
@@ -78,7 +78,7 @@ public class PhotoAssessor : MonoBehaviour
     }
     
     [ContextMenu("Assess Photo")]
-    private void AssessPhoto()
+    public void AssessPhoto()
     {
         StartCoroutine(imageUploaderForm.SendImageAsForm(photos[currentPhotoIndex]));
     }
