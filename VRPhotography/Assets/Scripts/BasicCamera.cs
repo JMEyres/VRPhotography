@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class BasicCamera : XRGrabInteractable
+public class BasicCamera : MonoBehaviour
 {
     [Header("Camera variables")]
     // Maybe change this to be command pattern
@@ -84,13 +84,13 @@ public class BasicCamera : XRGrabInteractable
         Debug.Log("BUTTON activated");
     }
 
-    protected override void OnEnable()
+    public void StartHolding()
     {
         rightJoystick.action.performed += SaveFloat;
         rightJoystick.action.canceled += SaveFloat;
     }
 
-    protected override void OnDisable()
+    public void StopHolding()
     {
         rightJoystick.action.performed -= SaveFloat;
         rightJoystick.action.canceled -= SaveFloat;
