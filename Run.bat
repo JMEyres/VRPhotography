@@ -7,7 +7,7 @@ start /B ollama run llama3.2:1b
 
 echo [2/3] Starting the Web Server...
 REM Notice the quotation marks around the path! That fixes the "space" issue.
-start /B python "Python Backend\game_server.py"
+start /B python "PythonBackend\game_server.py"
 
 echo [3/3] Launching the Game...
 REM The '/WAIT' flag pauses this script right here until the game is closed.
