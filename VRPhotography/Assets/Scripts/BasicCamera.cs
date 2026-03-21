@@ -11,7 +11,7 @@ public class BasicCamera : MonoBehaviour
     // Maybe change this to be command pattern
     public Camera targetCamera;
     public Volume globalVolume;
-
+    public LensBase lens;
     public int resW = 1920;
     public int resH = 1080;
     private float ev, iso, ss = 0;
@@ -75,7 +75,15 @@ public class BasicCamera : MonoBehaviour
         depthOfField.aperture.value = targetCamera.aperture;
 
         //Debug.Log(test);
-        if (targetCamera.focalLength+test.y >= 18) targetCamera.focalLength += test.y;
+        // 1. Apply the zoom movement first
+        targetCamera.focalLength += test.y;
+
+        // 2. "Clamp" the value so it can never be smaller than Min or larger than Max
+        targetCamera.focalLength = Mathf.Clamp(
+            targetCamera.focalLength, 
+            lens.focalLength, 
+            lens.focalLengthMax
+        );
         if (targetCamera.focusDistance + test.x *0.01f >= 0) targetCamera.focusDistance += test.x *0.01f;
     }
 

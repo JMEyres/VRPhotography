@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 62197785}
   - component: {fileID: 62197784}
   - component: {fileID: 62197787}
+  - component: {fileID: 62197788}
   m_Layer: 0
   m_Name: TEST
   m_TagString: Untagged
@@ -232,6 +233,20 @@ MonoBehaviour:
   sunSizeConvergenceNight: 3.62
   atmosphereThicknessNight: 0.34
   exposureNight: 0.2
+--- !u!114 &62197788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62197783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab612511c2018b46b31173ce771522b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  sceneToLoad: _ForestDemo
+  sceneToUnLoad: 
 --- !u!1 &108257433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,6 +1259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 2141928601}
   globalVolume: {fileID: 870591938}
+  lens: {fileID: 11400000, guid: 97476bdfa527f9348a007f5b1f9466a1, type: 2}
   resW: 1920
   resH: 1080
   rightJoystick: {fileID: -8666952849799569744, guid: c348712bda248c246b8c49b3db54643f, type: 3}
