@@ -43,25 +43,41 @@ public class DayNightCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 1. Constant progression (no more flipping!)
         globalTime += Time.deltaTime * timeScale;
-        var _sign = flip ? 1 : -1;
-        time += (Time.deltaTime * _sign) * timeScale;
-        sunTime += Time.deltaTime * timeScale;
-        var sunRot = RangeMap(sunTime, 0, dayLength, -20, 200);
-        sun.transform.localEulerAngles = new Vector3 (sunRot,0,0);
-        var _lerpTime = time/dayLength;
-        
-        sunLight.color = sunColorTimeline.Evaluate(_lerpTime);
-        UnityEngine.RenderSettings.skybox.SetFloat("_SunSizeConvergence", Mathf.Lerp(sunSizeConvergenceDay, sunSizeConvergenceNight, _lerpTime));
-        UnityEngine.RenderSettings.skybox.SetFloat("_AtmosphereThickness", Mathf.Lerp(atmosphereThicknessDay, atmosphereThicknessNight, _lerpTime));
-        UnityEngine.RenderSettings.skybox.SetFloat("_Exposure", Mathf.Lerp(exposureDay, exposureNight, _lerpTime));
+        time += Time.deltaTime * timeScale;
 
-        if (time >= dayLength || time <= 0 && _sign == -1)
-        { 
-            flip = !flip;
-            sunTime = 0;
-
+        // 2. The "Reset": When we hit the end of the day, start back at 0
+        if (time >= dayLength) 
+        {
+            time = 0;
         }
+
+        // 3. Normalized 0 to 1 value
+        float solarPercent = time / dayLength;
+
+        // 4. Smooth 360 rotation
+        // 0 = Sunrise, 90 = Midday, 180 = Sunset, 270 = Midnight
+        float sunRot = solarPercent * 360f;
+        sun.transform.localEulerAngles = new Vector3(sunRot, 0, 0);
+
+        // 5. Apply the Gradient
+        sunLight.color = sunColorTimeline.Evaluate(solarPercent);
+
+        // 6. Intensity Logic: Turn off the sun when it's under the floor (180 to 360 degrees)
+        if (sunRot > 180f) {
+            sunLight.intensity = 0;
+        } else {
+            sunLight.intensity = exposureDay;
+        }
+
+            // 7. Update Skybox variables based on whether it is Day or Night
+        // This makes the transition happen ONLY when the sun is above/below the horizon
+        float skyboxLerp = (solarPercent > 0.5f) ? 1.0f : solarPercent * 2.0f; 
+
+        RenderSettings.skybox.SetFloat("_SunSizeConvergence", Mathf.Lerp(sunSizeConvergenceDay, sunSizeConvergenceNight, skyboxLerp));
+        RenderSettings.skybox.SetFloat("_AtmosphereThickness", Mathf.Lerp(atmosphereThicknessDay, atmosphereThicknessNight, skyboxLerp));
+        RenderSettings.skybox.SetFloat("_Exposure", Mathf.Lerp(exposureDay, exposureNight, skyboxLerp));
     }
     float RangeMap(float value, float inMin, float inMax, float outMin, float outMax)
     {

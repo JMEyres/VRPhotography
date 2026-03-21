@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class SceneLoadBTN : MonoBehaviour
 {
     public string sceneToLoad;
-
     public void TriggerLoad()
     {
         if (SceneLoader.Instance != null)
