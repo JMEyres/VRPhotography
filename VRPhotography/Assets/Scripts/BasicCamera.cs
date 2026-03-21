@@ -74,11 +74,8 @@ public class BasicCamera : MonoBehaviour
         depthOfField.focusDistance.value = targetCamera.focusDistance;
         depthOfField.aperture.value = targetCamera.aperture;
 
-        //Debug.Log(test);
-        // 1. Apply the zoom movement first
         targetCamera.focalLength += test.y;
 
-        // 2. "Clamp" the value so it can never be smaller than Min or larger than Max
         targetCamera.focalLength = Mathf.Clamp(
             targetCamera.focalLength, 
             lens.focalLength, 

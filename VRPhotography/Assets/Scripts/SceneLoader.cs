@@ -4,18 +4,27 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public string sceneToLoad = "";
-    public string sceneToUnLoad = "";
+    public static SceneLoader Instance;
+
+    void Awake()
+    {
+        if (Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
     
     [ContextMenu ("LoadScene")]
-    void LoadScene()
+    public void LoadScene(string scene)
     {
-        StartCoroutine(LoadAsync(sceneToLoad));
+        StartCoroutine(LoadAsync(scene));
     }
     [ContextMenu ("UnLoadScene")]
-    void UnLoadScene()
+    public void UnLoadScene(string scene)
     {
-        StartCoroutine(UnLoadAsync(sceneToUnLoad));
+        StartCoroutine(UnLoadAsync(scene));
     }
 
   
